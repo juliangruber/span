@@ -17,6 +17,15 @@ span(266400000);  // 3d 2h
 span('3d 2h');    // 266400000
 ```
 
+Running the tests
+-----------------
+
+```bash
+$ npm install
+$ npm install -g mocha
+$ mocha
+```
+
 License
 -------
 

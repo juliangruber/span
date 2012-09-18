@@ -1,6 +1,9 @@
 {
-    "name": "span",
-    "version": "0.0.2",
-    "author": "Julian Gruber <julian@juliangruber.com>",
-    "repository": "git://github.com/juliangruber/span"
+  "name": "span",
+  "version": "0.0.2",
+  "author": "Julian Gruber <julian@juliangruber.com>",
+  "repository": "git://github.com/juliangruber/span",
+  "devDependencies": {
+    "should": "*"
+  }
 }

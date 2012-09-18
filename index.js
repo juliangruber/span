@@ -15,7 +15,7 @@ function span(val) {
 function ms(str) {
   var date = parseDate(str);
   var ms = 0;
-  for (type in date) {
+  for (var type in date) {
     if (type == 'ms') ms += date[type];
     if (type == 's') ms += date[type] * intervals.SECOND;
     if (type == 'm') ms += date[type] * intervals.MINUTE;
@@ -29,7 +29,7 @@ function ms(str) {
 function str(ms) {
   var output = [];
   var buf;
-  for (i in intervals) {
+  for (var i in intervals) {
     if (ms>=intervals[i]) {
       buf = Math.floor(ms/intervals[i]);
       if (i!='MILLISECOND') {
@@ -54,11 +54,11 @@ function parseDate(str) {
 function parseRelative(str) {
   var str = str
     .replace(/in/, '')
-    .replace(/weeks|week|wochen|wochen/, 'w')
+    .replace(/weeks|week|wochen|woche/, 'w')
     .replace(/days|day|tage|tag/, 'd')
     .replace(/hours|hour|stunden|stunde/, 'h')
     .replace(/minutes|minute|mins|min|minuten/, 'm')
-    .replace(/seconds|seconds|secs|sec|sekunden|sekunde/, 's')
+    .replace(/seconds|second|secs|sec|sekunden|sekunde|sek/, 's')
 
   var duration = 0;
   var date = {};
