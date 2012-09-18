@@ -3,12 +3,16 @@ var intervals = {
   DAY: 86400000,
   HOUR: 3600000,
   MINUTE: 60000,
-  SECOND: 1000
+  SECOND: 1000,
+  MILLISECOND: 1
 }
 
-var milliseconds = {};
+function span(val) {
+  if (typeof val == 'number' || val == parseInt(val, 10)) return str(val);
+  return ms(val);
+};
 
-milliseconds.ms = function(str) {
+function ms(str) {
   var date = parseDate(str);
   var ms = 0;
   for (type in date) {
@@ -21,22 +25,26 @@ milliseconds.ms = function(str) {
   return ms;
 }
 
-milliseconds.str = function(ms) {
+function str(ms) {
   var output = [];
   var buf;
   var formatted;
   for (i in intervals) {
-    if (ms>=intervals[i] || intervals[i]<=start) {
+    if (ms>=intervals[i]) {
       buf = Math.floor(ms/intervals[i]);
-      formatted = buf+i.substr(0,1).toLowerCase();
-      if (ms < intervals[i] && start-ms < intervals[i]) {
-        formatted = '<span>'+formatted+'</span>';
+      formatted = buf+'';
+      if (i=='MILLISECOND') {
+        formatted += 'ms';
+      } else {
+        formatted += i.substr(0,1).toLowerCase();
       }
+      
       output.push(formatted);
+
       ms -= buf*intervals[i];
     }
   }
-  return output.join('&nbsp;');
+  return output.join(' ');
 }
 
 function parseDate(str) {
@@ -70,4 +78,4 @@ function parseRelative(str) {
   return date;
 }
 
-module.exports = milliseconds;
+module.exports = span;
