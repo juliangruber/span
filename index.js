@@ -16,6 +16,7 @@ function ms(str) {
   var date = parseDate(str);
   var ms = 0;
   for (type in date) {
+    if (type == 'ms') ms += date[type];
     if (type == 's') ms += date[type] * intervals.SECOND;
     if (type == 'm') ms += date[type] * intervals.MINUTE;
     if (type == 'h') ms += date[type] * intervals.HOUR;
@@ -28,19 +29,14 @@ function ms(str) {
 function str(ms) {
   var output = [];
   var buf;
-  var formatted;
   for (i in intervals) {
     if (ms>=intervals[i]) {
       buf = Math.floor(ms/intervals[i]);
-      formatted = buf+'';
-      if (i=='MILLISECOND') {
-        formatted += 'ms';
-      } else {
-        formatted += i.substr(0,1).toLowerCase();
+      if (i!='MILLISECOND') {
+        output.push(buf+i.substr(0,1).toLowerCase());
+      } else if (!output.length) {
+        output.push(buf+'ms');
       }
-      
-      output.push(formatted);
-
       ms -= buf*intervals[i];
     }
   }

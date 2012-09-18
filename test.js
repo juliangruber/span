@@ -12,6 +12,7 @@ assert(span(60000) == '1m');
 assert(span(2*60000) == '2m');
 assert(span(span('10 hours')) == '10h');
 assert(span(266400000) == '3d 2h');
+assert(span(266400001) == '3d 2h');
 assert(span('3d 2h') == 266400000);
 
 console.log('All tests passed.')
